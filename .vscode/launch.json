@@ -8,7 +8,7 @@
       "request": "launch",
       "name": "Launch Program",
       "type": "node",
-      "program": "${workspaceFolder}/day-1/part-2/trebuchet-2.ts",
+      "program": "${workspaceFolder}/day-3/part-1/gear-ratios.ts",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "/opt/homebrew/bin/deno",
       "runtimeArgs": ["run", "--inspect-wait", "--allow-all"],
