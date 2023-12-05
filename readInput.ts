@@ -1,4 +1,4 @@
-async function readFile(path: string) {
+async function readInput(path: string) {
   const decoder = new TextDecoder('utf-8');
   const rawInput = await Deno.readFile(path).catch((err) => console.error(err));
   if (!rawInput) throw new Error('Cant read input.txt');
@@ -6,4 +6,4 @@ async function readFile(path: string) {
   return decoder.decode(rawInput);
 }
 
-export default readFile;
+export default readInput;
