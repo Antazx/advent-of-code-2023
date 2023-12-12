@@ -9,3 +9,6 @@ These are my solutions for the advent of code 2023
 ## --- Day 3: Cube Conundrum ---
 - [Solution 1](/day-3/part-1/gear-ratios.ts)
 - [Solution 2](/day-3/part-2/gear-ratios.ts)
+## --- Day 3: Scratchcards ---
+- [Solution 1](/day-4/part-1/scratchcards.ts)
+- [Solution 2](/day-4/part-2/scratchcards.ts)
