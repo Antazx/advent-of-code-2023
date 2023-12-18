@@ -14,5 +14,5 @@ These are my solutions for the advent of code 2023
 - [Solution 2](/day-4/part-2/scratchcards.ts) ✅
 ## --- Day 5: If You Give A Seed A Fertilizer ---
 - [Solution 1](/day-5/part-1/if-you-give-a-seed-a-fertilizer.ts) ✅
-- [Solution 2](/day-5/part-2/if-you-give-a-seed-a-fertilizer.ts) ❌
-## --- Day 5: If You Give A Seed A Fertilizer ---
+- [Solution 2](/day-5/part-2/if-you-give-a-seed-a-fertilizer.ts) ✅
+## --- Day 6: Wait For It ---

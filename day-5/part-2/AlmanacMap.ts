@@ -1,10 +1,10 @@
 export class AlmanacMap {
   private name: string;
-  private mappigns: [number, number, number][];
+  private mappings: [number, number, number][];
 
   constructor(input: string) {
     this.name = this.extractName(input);
-    this.mappigns = this.extractMappings(input);
+    this.mappings = this.extractMappings(input);
   }
 
   getDestinationValue(sourceValue: number): number {
@@ -20,7 +20,7 @@ export class AlmanacMap {
   }
 
   private searchMapping(sourceValue: number): [number, number, number] | undefined {
-    const mapping = this.mappigns.find(([_destinationStart, sourceStart, rangeLength]) => {
+    const mapping = this.mappings.find(([_destinationStart, sourceStart, rangeLength]) => {
       const greaterThanStart = sourceValue >= sourceStart;
       const lowerThanEnd = sourceValue < sourceStart + rangeLength;
 

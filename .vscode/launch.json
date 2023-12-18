@@ -8,7 +8,7 @@
       "request": "launch",
       "name": "Launch Program",
       "type": "node",
-      "program": "${workspaceFolder}/day-5/part-2/if-you-give-a-seed-a-fertilizer.ts",
+      "program": "${workspaceFolder}/day-5/part-2/test.ts",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "/opt/homebrew/bin/deno",
       "runtimeArgs": ["run", "--inspect-wait", "--allow-all"],

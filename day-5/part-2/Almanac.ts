@@ -1,6 +1,9 @@
 import { AlmanacMap } from './AlmanacMap.ts';
 
 export class Almanac {
+  private static RANGE_SIZE = 50000;
+  private static RANGE_OFFSET = 25000;
+
   seeds: number[][];
   mappings: AlmanacMap[] = [];
 
@@ -9,39 +12,72 @@ export class Almanac {
     this.mappings = this.extractMappings(input);
   }
 
+  buildSeedRanges(): number[][] {
+    const seedRanges = [];
+
+    for (let seedIndex = 0; seedIndex < this.seeds.length; seedIndex++) {
+      const [seedStart, seedRange] = this.seeds[seedIndex];
+      seedRanges.push([seedStart, seedStart + seedRange - 1]);
+    }
+
+    return seedRanges;
+  }
+
+  getMinLocationPairs(): number[][] {
+    const seedRanges = this.buildSeedRanges();
+    const minLocations = [];
+    for (const seed of seedRanges) {
+      const [seedStart, seedRange] = seed;
+      let minLocation = Infinity;
+      let minSeed = seedStart;
+
+      for (let seedIndex = seedStart; seedIndex < seedRange; seedIndex += Almanac.RANGE_SIZE) {
+        const location = this.calculateLastMapValue(seedIndex);
+        if (location < minLocation) {
+          minLocation = location;
+          minSeed = seedIndex;
+        }
+      }
+
+      minLocations.push([minLocation, minSeed, seedStart, seedRange]);
+    }
+
+    return minLocations;
+  }
+
+  getMinRangeSeed(): number[] {
+    const minLocations = this.getMinLocationPairs();
+
+    let minLocation = Infinity;
+    let minRange = [0, 0, 0];
+    for (const [location, seed, seedStart, seedRange] of minLocations) {
+      if (location < minLocation) {
+        minLocation = location;
+        minRange = [seed, seedStart, seedRange];
+      }
+    }
+
+    return minRange;
+  }
+
   processMappings(): number {
-    /**
-     * Hay que encontrar la manera de procesar un rango y no los valores individuales de cada rango porque se va de madre
-     * Ideas:
-     * - Hacer el mapeo al revés y  buscar la seed
-     * - Filtrar los maps por el mínimo valor de destino
-     *
-     */
+    const minRangeSeed = this.getMinRangeSeed();
 
-    const lastValues = [];
-    const lastValuesMapping: Record<number, number> = {};
+    const minSearch = Math.max(minRangeSeed[0] - Almanac.RANGE_OFFSET, minRangeSeed[1]);
+    const maxSearch = Math.min(minRangeSeed[0] + Almanac.RANGE_OFFSET, minRangeSeed[2]);
 
-    for (const [seedStart, _seedRange] of this.seeds) {
-      const nextValue = this.calculateLastMapValue(seedStart);
-      lastValues.push(nextValue);
-      lastValuesMapping[nextValue] = seedStart;
+    let minSeed = minSearch;
+    let minLocation = Infinity;
+
+    for (let seedIndex = minSearch; seedIndex <= maxSearch; seedIndex++) {
+      const location = this.calculateLastMapValue(seedIndex);
+      if (location < minLocation) {
+        minLocation = location;
+        minSeed = seedIndex;
+      }
     }
 
-    const minValue = Math.min(...lastValues);
-
-    const seedToProcess = lastValuesMapping[minValue];
-    const seed = this.seeds.find(([start, _range]) => start === seedToProcess);
-    if (!seed) throw new Error("Can't recover seed from min last value");
-
-    const [seedStart, seedRange] = seed;
-    const lastSeedValues = [];
-
-    for (let seedIndex = seedStart; seedIndex < seedStart + seedRange; seedIndex++) {
-      const nextValue = this.calculateLastMapValue(seedIndex);
-      lastSeedValues.push(nextValue);
-    }
-
-    return Math.min(...lastSeedValues);
+    return this.calculateLastMapValue(minSeed);
   }
 
   private calculateLastMapValue(seedValue: number): number {
