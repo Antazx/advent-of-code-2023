@@ -16,3 +16,8 @@ These are my solutions for the advent of code 2023
 - [Solution 1](/day-5/part-1/if-you-give-a-seed-a-fertilizer.ts) ✅
 - [Solution 2](/day-5/part-2/if-you-give-a-seed-a-fertilizer.ts) ✅
 ## --- Day 6: Wait For It ---
+- [Solution 1](/day-6/part-1/wait-for-it.ts) ✅
+- [Solution 2](/day-6/part-2/wait-for-it.ts) ✅
+## --- Day 7: Camel Cards ---
+- [Solution 1](/day-7/part-1/camel-cards.ts) ✅
+- [Solution 2](/day-7/part-2/camel-cards.ts) ✅
