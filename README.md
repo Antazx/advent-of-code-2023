@@ -21,3 +21,5 @@ These are my solutions for the advent of code 2023
 ## --- Day 7: Camel Cards ---
 - [Solution 1](/day-7/part-1/camel-cards.ts) ✅
 - [Solution 2](/day-7/part-2/camel-cards.ts) ✅
+## --- Day 8: Haunted Wasteland ---
+- [Solution 1](/day-8/part-1/haunted-wateland.ts) ✅
